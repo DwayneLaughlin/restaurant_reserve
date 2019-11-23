@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src ="//code.jquery.com/jquery.js"></script>
+    <title>Tables</title>
+</head>
+<body>
+    <h1>Current Reservations</h1>
+    <div class="js-rsvp">This will be for the table code</div>
+
+    <script>
+        $.get("/api/rsvp").then(rsvp => {
+            console.log(rsvp);
+
+            // for parsing data
+            let allTables = ""
+            rsvp.forEach(reservation => {
+                // const custyName = rsvp.custName;
+                let tableDiv = 
+                `<div>${reservation.custName}</div> 
+                <div>${reservation.custEmail}</div> 
+                <div>${reservation.custPhone}</div>` 
+                
+
+                allTables += tableDiv + "<br>";
+                
+                $(".js-rsvp").html(allTables)
+            })
+
+            
+        });
+    </script>
+
+</body>
+</html>

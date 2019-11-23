@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="//code.jquery.com/jquery.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <h1>You tryna make a reservation or nah?</h1>
+
+    <div><input id="custName">Name</div>
+    <div><input id="custEmail">Email</div>
+    
+    <div><input id="custPhone">Phone</div>
+    <button class ="js-submit">Make Reservation</button>
+
+    <script>
+        $(".js-submit").on("click", event =>{
+            
+             
+            const newReservation = {
+                custName: $("#custName").val().trim(),
+                custEmail: $("#custEmail").val().trim(),
+                custPhone: $("#custPhone").val().trim()
+            }
+            $.post("/api/tables", newReservation, data =>{
+                console.log(data)
+            })
+        })
+    </script>
+</body>
+</html>
